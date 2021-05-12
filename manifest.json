@@ -1,0 +1,67 @@
+{
+    "manifest_version": 2,
+    "name": "Google Meet AFK",
+    "short_name": "AFK",
+    "description": "I'll handle the hard work while ur asleep 💤.",
+    "version": "2.0.0",
+    "icons": {
+        "512": "icon.png"
+    },
+
+    "content_scripts": [
+        {
+        "matches": ["https://meet.google.com/*"],
+        "run_at": "document_start",
+        "js": ["meet_controller.js"]
+      }
+    ],
+
+    "background": {
+      "scripts": ["keyboard_listener.js"],
+      "persistent": false
+    },
+
+    "permissions": [
+      "tabs",
+      "notifications",
+      "ttsEngine",
+      "tts"
+    ],
+    "tts_engine": {
+      "voices": [
+        {
+          "voice_name": "Alice",
+          "lang": "en-US",
+          "event_types": ["start", "marker", "end"]
+        },
+        {
+          "voice_name": "Pat",
+          "lang": "en-US",
+          "event_types": ["end"]
+        }
+      ]
+    },
+    "commands": {
+      "toggle-feature-bar": {
+        "suggested_key": {
+          "default": "Ctrl+Shift+7"
+        },
+        "description": "Toggle feature foo",
+        "global": true
+      },
+      "toggle-feature-foo": {
+        "suggested_key": {
+          "default": "Ctrl+Shift+5"
+        },
+        "description": "Toggle feature foo",
+        "global": true
+      },
+      "toggle-feature-2": {
+        "suggested_key": {
+          "default": "Ctrl+Shift+6"
+        },
+        "description": "Toggle feature foo",
+        "global": true
+      }
+    }
+}
